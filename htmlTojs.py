@@ -1,7 +1,3 @@
-e
-
-
-html_script = """<div id="wrapper"> <header> <div class="iconDiv" tooltip="Load file" tabindex="0"> <div class="iconSVG"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"> <path stroke-linecap="round" stroke-linejoin="round" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" /> </svg> </div> </div> <div class="iconDiv" tooltip="Download" tabindex="0"> <div class="iconSVG"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /> </svg> </div> </div> <div class="spacer"></div> <div class="divider"></div> <div class="iconDiv" tooltip="Notifications" tabindex="0"> <div class="iconSVG"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /> </svg> </div> </div> <div class="iconDiv" tooltip="Log out" tabindex="0"> <div class="iconSVG"> <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"> <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" /> </svg> </div> </div> </header> </div>"""
 
 # no data like this <!--<div> </div>-->  is acceptable
 # f1 -> join lines
@@ -10,8 +6,8 @@ html_script = """<div id="wrapper"> <header> <div class="iconDiv" tooltip="Load 
 print('Report bugs:')
 
 print('Facebook: https://www.facebook.com/kzkamalzaitar/ (More active here)')
-
 print()
+print('no data like this <!--<div> </div>-->  is acceptable')
 print()
 
 
@@ -277,46 +273,70 @@ def html_to_js(html_script, js_variable_name, **kwargs):
         print(line_of_html)
             
         
-html_to_js(html_script,'kk',mode='') 
+# html_to_js(html_script,'kk',mode='') 
 
-# gg = """let kk ='<div class="replyContainer" id="replyContainer' + counterReceivedMsg + '" >' kk    +=  '<div class="msg left-msg-outer">' kk    +=    '<img class="msg-img" src="../static/images/DARK PINK LOGO.ico" alt="">' kk    +=    '<div class="inner-container-left">' kk    +=      '<div class="msg-bubble">' kk    +=        '<div class="msg-info">' kk    +=          '<div class="msg-info-name"> '+personToChatWith+' </div>' kk    +=          '<div class="msg-info-time"> '+PmAmTime+' </div>' kk    +=        '</div>' kk    +=        '<div class="msg-text"> '+msg+' </div>' kk    +=      '</div>' kk    +=      '<div class="left-msg-actions-menu">' kk    +=        '<div class="centerElements">' kk    +=          '<button class="right-msg-Btn"> ... </button>' kk    +=        '</div>' kk    +=        '<div class="centerElements">' kk    +=          '<div class="right-msg-content">' kk    +=            '<a href="#" onclick="reportMgs(this.id)" id="' + counterReceivedMsg + '"> report </a>' kk    +=            '<a href="#" > copy </a>' kk    +=            '<a href="#" > forward </a>' kk    +=          '</div>' kk    +=        '</div>' kk    +=      '</div>' kk    +=    '</div>' kk    +=  '</div>' kk    +='</div>'"""
-
-# def js_to_html(js_script, js_variable_name):
+def js_to_html(js_script, js_variable_name):
     
-#     html_script_collector = ''
+    html_script_collector = ''
     
-#     lines_list = []
+    lines_list = []
     
-#     for char in js_script:
+    for char_num in range(len(js_script)):
         
-#         html_script_collector += char
+        char = js_script[char_num]
         
-#         if html_script_collector == 'let ' + js_variable_name + ' =':
-            
-#             print(html_script_collector) 
-            
-#             html_script_collector = ''
-            
-#         elif html_script_collector == js_variable_name + '    +=':
-            
-#             print(html_script_collector) 
-            
-#             html_script_collector = ''
-            
-#         elif html_script_collector[:2] == "'<" and  html_script_collector[-2:] == "'>" :
-            
-#             lines_list.append(html_script_collector)
-            
-#             print(html_script_collector[:2], html_script_collector[-2:])
-            
-            
-#     for x in lines_list:
+        html_script_collector += char
         
-#         print(x, 132)
-            
+        bg= 'let ' + js_variable_name + ' ='
         
-# js_to_html(gg, 'kk')      
+        end_arg = js_variable_name + '    +='
+        
+        len_end_arg = len(end_arg)
+        
+        if html_script_collector == bg:
+            
+            html_script_collector = html_script_collector.replace(bg, '')
+            
+        elif html_script_collector[-len_end_arg:] == end_arg:
+            
+            phrase_len = len(html_script_collector) - len_end_arg
+            
+            phrase_with_apostrophes  = html_script_collector[:phrase_len]
+            
+            output_collector = ''
+            
+            stop = False
+            
+            for alpha in phrase_with_apostrophes:
+                
+                if alpha == "'" and not stop:
+                    
+                    output_collector += '' 
+                    stop = True
+                    
+                else:
+                    
+                    output_collector += alpha
+            
+            clean_html_line = output_collector[:-2]
+            
+            lines_list.append(clean_html_line)
+            
+            html_script_collector = ''  
+            
+        elif char_num == len(js_script) - 1:
+            
+            clean_html_line = html_script_collector[1:-1]
+            
+            lines_list.append(clean_html_line)
+            
+            html_script_collector = ''  
+    
+    for x in lines_list:
+        
+        print(x)            
+        
+# js_to_html(js_script, 'kk')      
         
 
 # print(list_html_element)
-
